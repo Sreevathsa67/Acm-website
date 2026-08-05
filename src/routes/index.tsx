@@ -65,11 +65,11 @@ function Index() {
               <Sparkles className="h-3.5 w-3.5" /> VVCE, Mysuru
             </span>
             <h1 className="mt-6 font-display text-[clamp(2.6rem,7vw,5.6rem)] font-extrabold leading-[0.92]">
-              Curious
+              Learn it.
               <br />
-              minds,
+              Build it.
               <br />
-              <span className="text-primary">shipping</span> code.
+              <span className="text-primary">Teach</span> it.
             </h1>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
               {chapter.tagline} {chapter.purpose}
