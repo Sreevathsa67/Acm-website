@@ -1,0 +1,198 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-stripe-1: var(--stripe-1);
+  --color-stripe-2: var(--stripe-2);
+  --color-stripe-3: var(--stripe-3);
+  --color-stripe-4: var(--stripe-4);
+  --color-stripe-5: var(--stripe-5);
+  --font-display: "Baloo 2", ui-rounded, system-ui, sans-serif;
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.9rem;
+  --background: oklch(0.985 0.015 230);
+  --foreground: oklch(0.24 0.06 255);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.06 255);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.06 255);
+  --primary: oklch(0.62 0.13 245);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --secondary: oklch(0.94 0.03 235);
+  --secondary-foreground: oklch(0.3 0.07 250);
+  --muted: oklch(0.95 0.02 235);
+  --muted-foreground: oklch(0.55 0.04 250);
+  --accent: oklch(0.9 0.05 220);
+  --accent-foreground: oklch(0.28 0.07 250);
+  --destructive: oklch(0.6 0.18 25);
+  --destructive-foreground: oklch(0.99 0.005 240);
+  --border: oklch(0.91 0.02 235);
+  --input: oklch(0.91 0.02 235);
+  --ring: oklch(0.7 0.09 240);
+
+  /* pastel blue stripe family */
+  --stripe-1: oklch(0.86 0.07 205);
+  --stripe-2: oklch(0.9 0.06 230);
+  --stripe-3: oklch(0.82 0.09 245);
+  --stripe-4: oklch(0.88 0.08 260);
+  --stripe-5: oklch(0.79 0.1 235);
+
+  --shadow-soft: 0 10px 30px -12px oklch(0.6 0.1 245 / 0.35);
+  --shadow-card: 0 18px 40px -20px oklch(0.5 0.09 250 / 0.45);
+}
+
+.dark {
+  /* near-black surfaces — only the accent stays pastel blue */
+  --background: oklch(0.13 0.005 250);
+  --foreground: oklch(0.97 0.004 240);
+  --card: oklch(0.17 0.007 250);
+  --card-foreground: oklch(0.97 0.004 240);
+  --popover: oklch(0.17 0.007 250);
+  --popover-foreground: oklch(0.97 0.004 240);
+  --primary: oklch(0.78 0.1 240);
+  --primary-foreground: oklch(0.15 0.008 250);
+  --secondary: oklch(0.22 0.008 250);
+  --secondary-foreground: oklch(0.97 0.004 240);
+  --muted: oklch(0.22 0.008 250);
+  --muted-foreground: oklch(0.72 0.012 245);
+  --accent: oklch(0.26 0.012 245);
+  --accent-foreground: oklch(0.97 0.004 240);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.7 0.08 245);
+
+  /* barely-there blues so the gradients read as a haze over black */
+  --stripe-1: oklch(0.24 0.025 205);
+  --stripe-2: oklch(0.21 0.022 230);
+  --stripe-3: oklch(0.26 0.032 245);
+  --stripe-4: oklch(0.23 0.028 260);
+  --stripe-5: oklch(0.2 0.03 235);
+
+  --shadow-soft: 0 10px 30px -12px oklch(0 0 0 / 0.55);
+  --shadow-card: 0 18px 40px -20px oklch(0 0 0 / 0.6);
+}
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility glass-card {
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--card) 92%, transparent),
+    color-mix(in oklab, var(--card) 72%, transparent)
+  );
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
+  border: 1px solid color-mix(in oklab, var(--primary) 12%, transparent);
+}
+
+@utility stripe-band {
+  position: absolute;
+  top: -35%;
+  height: 190%;
+  transform: skewX(-22deg);
+  border-radius: 4px;
+}
+
+@utility paper-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--primary) 9%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--primary) 9%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@utility tide {
+  background: radial-gradient(
+      120% 90% at 12% 0%,
+      color-mix(in oklab, var(--stripe-3) 70%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      100% 80% at 95% 25%,
+      color-mix(in oklab, var(--stripe-1) 65%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      90% 70% at 60% 100%,
+      color-mix(in oklab, var(--stripe-4) 60%, transparent),
+      transparent 60%
+    );
+}
+
+@utility marquee-track {
+  display: inline-flex;
+  min-width: 200%;
+  animation: marquee-scroll 26s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility float-slow {
+  animation: float-y 7s ease-in-out infinite;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
